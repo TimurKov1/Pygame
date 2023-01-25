@@ -76,7 +76,6 @@ class Warrior(pygame.sprite.Sprite):
                 self.image = pygame.transform.flip(pygame.transform.scale(self.frames[self.attackCount], (self.frames[self.attackCount].get_width() * 2, self.frames[self.attackCount].get_height() * 2)), True, False)
                 self.rect.x = self.attackX - self.image.get_width() + 78
             self.attackCount += 1
-            print(self.rect.x)
         elif self.isAttack2 and (not self.isJump):
             if self.attackCount == 0:
                 self.attackX = self.rect.x

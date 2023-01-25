@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 
-path = 'Leaf'
+path = 'Water'
 
 for currentdir, dirs, files in os.walk(path):
     if currentdir != path:
@@ -32,5 +32,5 @@ for currentdir, dirs, files in os.walk(path):
                 if pixels[i, j] != pixels[i, j - 1] and j > coords['bottom']:
                     coords['bottom'] = j
         height = coords['bottom'] - coords['top']
-        im = im.crop((coords['left'], coords['top'] - (70 - height), coords['right'], coords['bottom']))
+        im = im.crop((coords['left'], coords['top'] - (100 - height), coords['right'], coords['bottom']))
         im.save(f"{currentdir.split('/')[-1]}/{number}.png")
