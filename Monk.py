@@ -83,7 +83,7 @@ class Monk(pygame.sprite.Sprite):
                 self.attackCount = 0
                 self.power -= 25
                 return
-            self.change_frames("Characters/Monk/Attack2", 3)
+            self.change_frames("Characters/Monk/Attack2", 4)
             if self.direction == 'right':
                 self.image = pygame.transform.scale(self.frames[self.attackCount], (self.frames[self.attackCount].get_width() * 3, self.frames[self.attackCount].get_height() * 3))
             else:
@@ -98,7 +98,7 @@ class Monk(pygame.sprite.Sprite):
                 self.attackCount = 0
                 self.power -= 50
                 return
-            self.change_frames("Characters/Monk/Attack3", 3)
+            self.change_frames("Characters/Monk/Attack3", 4)
             if self.direction == 'right':
                 self.image = pygame.transform.scale(self.frames[self.attackCount], (self.frames[self.attackCount].get_width() * 3, self.frames[self.attackCount].get_height() * 3))
             else:

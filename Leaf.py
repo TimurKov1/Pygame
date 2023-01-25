@@ -2,6 +2,7 @@ import os
 import pygame
 from Functions import load_image
 from Bullet import Bullet
+from Ray import Ray
 
 
 class Leaf(pygame.sprite.Sprite):
@@ -23,7 +24,7 @@ class Leaf(pygame.sprite.Sprite):
         self.isAttack3 = False
         self.attackEnergy = 7
         self.attack2Energy = 15
-        self.attack3Energy = 0
+        self.attack3Energy = 50
         self.isBlock = False
         self.bullet = 0
         self.jumpCount = 16
@@ -99,6 +100,26 @@ class Leaf(pygame.sprite.Sprite):
                 self.power -= 15
                 return
             self.change_frames("Characters/Leaf/Attack2", 4)
+            if self.direction == 'right':
+                self.image = pygame.transform.scale(self.frames[self.attackCount], (self.frames[self.attackCount].get_width() * 2, self.frames[self.attackCount].get_height() * 2))
+            else:
+                self.image = pygame.transform.flip(pygame.transform.scale(self.frames[self.attackCount], (self.frames[self.attackCount].get_width() * 2, self.frames[self.attackCount].get_height() * 2)), True, False)
+                self.rect.x = self.attackX - self.image.get_width() + 92
+            self.attackCount += 1
+        elif self.isAttack3 and (not self.isJump):
+            if self.attackCount == 0:
+                self.attackX = self.rect.x
+            if self.attackCount == len(self.frames):
+                self.isAttack3 = False
+                self.attackCount = 0
+                self.power -= 50
+                return
+            if self.attackCount == 45:
+                if self.direction == 'right':
+                    self.ray = Ray(self.all_sprites, self.rect.x - self.image.get_width() + 230, self.rect.y - 40, 50)
+                else:
+                    self.ray = Ray(self.all_sprites, self.rect.x - self.image.get_width() - 820, self.rect.y - 40, 50)
+            self.change_frames("Characters/Leaf/Attack3", 5)
             if self.direction == 'right':
                 self.image = pygame.transform.scale(self.frames[self.attackCount], (self.frames[self.attackCount].get_width() * 2, self.frames[self.attackCount].get_height() * 2))
             else:
