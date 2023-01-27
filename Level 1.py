@@ -1,0 +1,1 @@
+print('LEVEL 1')
